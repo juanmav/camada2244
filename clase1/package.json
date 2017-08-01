@@ -1,0 +1,24 @@
+{
+  "name": "primerclase",
+  "version": "0.0.1",
+  "description": "Primer Clase de Curso de Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitub.com/juanmav/camada2244"
+  },
+  "keywords": [
+    "Nodejs",
+    "JS",
+    "backend",
+    "Coderhouse"
+  ],
+  "author": "Camada2244",
+  "license": "ISC",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
