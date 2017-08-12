@@ -1,0 +1,16 @@
+{
+  "name": "clase3",
+  "version": "1.0.0",
+  "description": "clase 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "camada2244",
+  "license": "ISC",
+  "dependencies": {
+    "csvtojson": "^1.1.7",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  }
+}
