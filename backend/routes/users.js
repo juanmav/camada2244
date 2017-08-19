@@ -9,7 +9,7 @@ const User = require('../models/user');
            res.status(200).json(users);
         });
 
-});*/
+});//*/
 
 router.post('/', function(req, res){
     let data = req.body;

@@ -20,9 +20,12 @@ app.get('/', function(req, res){
 // Routes
 const usersRouter = require('./routes/users');
 const tweetRouter = require('./routes/tweets');
+const loginRouter = require('./routes/login');
+const authMiddleWare = require('./routes/authValidator');
 
+app.use('/login', loginRouter);
 app.use('/users', usersRouter);
-app.use('/tweets', tweetRouter);
+app.use('/tweets', authMiddleWare, tweetRouter);
 
 console.log('Levanto el Backend en el puerto: ' + port);
 app.listen(port);
