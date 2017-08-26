@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Tweets from './components/Tweets';
 import Login from './components/Login';
+import TweetCreator from './components/TweetCreator';
 
 class App extends React.Component{
 
@@ -26,10 +27,20 @@ class App extends React.Component{
                     this.state.login ?
                         <Router>
                             <div>
-                                <Route path="/" exact={true} component={Tweets}/>
+                                <ul>
+                                   <li><Link to="/create"> Crear un Tweet!</Link></li>
+                                </ul>
+                                <div>
+                                    <Route path="/" exact={true} component={Tweets}/>
+                                    <Route path="/create" exact={true} component={TweetCreator}/>
+                                    <Route path="/edit/:id" exact={true} render={({match}) => {
+                                        return <TweetCreator tweetId={match.params.id}/>
+                                    }} />
+
+                                </div>
                             </div>
                         </Router>
-                    :
+                        :
                         <Router>
                             <div>
                                 <Route path="/" exact={true} component={Login} />

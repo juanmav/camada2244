@@ -1,4 +1,5 @@
 import React from 'react';
+import Tweet from './Tweet';
 
 export default class Tweets extends React.Component {
     constructor(){
@@ -9,6 +10,10 @@ export default class Tweets extends React.Component {
     }
 
     componentWillMount(){
+       this.load();
+    }
+
+    load = () => {
         let token = JSON.parse(localStorage.getItem('login')).token;
 
         fetch('http://localhost:8000/tweets',{
@@ -21,18 +26,36 @@ export default class Tweets extends React.Component {
         })
             .then(response => response.json())
             .then(tweets => this.setState({tweets}));
-    }
+    };
+
+    removeTweet = (_id) => {
+        console.log('Borrar tweet id:' + _id);
+        let token = JSON.parse(localStorage.getItem('login')).token;
+        fetch('http://localhost:8000/tweets/' + _id,{
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            },
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(result => {
+                alert('Borrado con Exito! Apreta F5');
+                //this.load();
+
+                let updatedList = this.state.tweets.filter( t => t._id != _id);
+                this.setState({ tweets: updatedList});
+            })
+    };
 
     render(){
         return (
             <div>
                 {
-                    this.state.tweets.map( t => {
+                    this.state.tweets.map( (t, index )=> {
                         return (
-                            <div>
-                                <h1>{t.message}</h1>
-                                <h3>tweet de {t.creator.name} {t.creator.lastname }</h3>
-                            </div>
+                           <Tweet key={index} {...t} removeFn={this.removeTweet}/>
                         )
                     })
                 }

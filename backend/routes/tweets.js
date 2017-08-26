@@ -19,6 +19,14 @@ router.get('/', function (req, res) {
         .catch(err => res.status(503).json(err));
 });
 
+router.get('/:id', function (req, res) {
+    Tweet
+        .findOne({ _id: req.params.id })
+        .populate('creator')
+        .then(tweets => res.status(200).json(tweets))
+        .catch(err => res.status(503).json(err));
+});
+
 router.post('/', function(req,res){
     let data = req.body;
     data.creator = req.user._id;
