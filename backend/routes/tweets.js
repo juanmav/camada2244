@@ -2,7 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Tweet = require('../models/tweet');
 const User = require('../models/user');
+const commentsRouter = require('./comments');
 
+router.use('/:tweetId/comments', commentsRouter);
+
+/**
+ * GET /tweet/ List
+ *
+ * Devuelve el listado de tweets!
+ * */
 router.get('/', function (req, res) {
     Tweet
         .find({})
