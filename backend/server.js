@@ -3,11 +3,13 @@ const app = express();
 const port = 8000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 mongoose.connect('mongodb://localhost:27017/backend');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
+app.use(cors());
 
 app.get('/', function(req, res){
 
